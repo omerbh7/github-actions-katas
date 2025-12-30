@@ -3,7 +3,7 @@ on: push
 env:
  github_username: ${{ github.actor }}
  github_password: ${{ secrets.GITHUB_TOKEN }}
- git_commit: ${{ github.sha }}
+ GIT_COMMIT: ${{ github.sha }}
 jobs:
   Build:
     runs-on: ubuntu-latest
