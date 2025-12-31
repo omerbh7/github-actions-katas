@@ -53,6 +53,31 @@ jobs:
       run: bash ci/build-docker.sh
     - name: Push docker
       run: bash ci/push-docker.sh
+
+  Component-test:
+   runs-on: ubuntu-latest
+   needs: Docker-image
+   steps:
+    - name: Download code
+      uses: actions/download-artifact@v4
+      with:
+       name: code
+       path: .
+    - name: Execute component test
+      run: bash ci/component-test.sh
+
+  Performence-test:
+   runs-on: ubuntu-latest
+   needs: [Docker-image]
+   steps:
+    - name: Download code
+      uses: actions/download-artifact@v4
+      with:
+       name: code
+       path: .
+    - name: Execute performence test
+      run: bash ci/performence-test.sh
+   
        
        
     
